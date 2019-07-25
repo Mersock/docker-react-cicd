@@ -1,0 +1,10 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t mersock/docker-react-cicd -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true mersock/docker-react-cicd npm run test
+  #- docker run mersock/docker-react-cicd npm run test -- --coverage
